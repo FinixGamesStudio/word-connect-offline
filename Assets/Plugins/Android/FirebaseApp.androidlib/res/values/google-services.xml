@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id">
+  <string name="gcm_defaultSenderId" translatable="false">963058576945</string>
+  <string name="google_storage_bucket" translatable="false">world-connect-6ec6a.appspot.com</string>
+  <string name="project_id" translatable="false">world-connect-6ec6a</string>
+  <string name="google_api_key" translatable="false">AIzaSyAZxShTuLw9prSYbrG2htfuHJ4102kNcas</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAZxShTuLw9prSYbrG2htfuHJ4102kNcas</string>
+  <string name="google_app_id" translatable="false">1:963058576945:android:e519803d2c5a123804af10</string>
+</resources>

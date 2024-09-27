@@ -15,7 +15,7 @@ namespace WordConnectByFinix
         {
             wordForSearch = word;
             levelWords.Add(word);
-            StartCoroutine(GetRequest($"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"));
+            //StartCoroutine(GetRequest($"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"));
         }
 
         IEnumerator GetRequest(string uri)

@@ -34,7 +34,10 @@ namespace WordConnectByFinix
 
         void Awake()
         {
-            instance = this;
+            if (instance == null)
+                instance = this;
+            else
+                Destroy(this.gameObject);
         }
 
         void Start()
@@ -65,7 +68,7 @@ namespace WordConnectByFinix
             }
 
             Debug.Log(Word_AllPrefs.unlockedLevel + " -- Current Level Index");
-            levelNameText.text = $"Level - {Word_GameState.currentLevel + 1}" ;
+            levelNameText.text = $"Level - {Word_GameState.currentLevel + 1}";
         }
 
         public void OnComplete()
@@ -104,7 +107,20 @@ namespace WordConnectByFinix
 
         public void ClickOnSettingBtn() => ConfigController.instance.settingController.ClickOnSettingBtn();
 
-        public void ClickOnShowAdBtn() => Word_AdmobController.instance.ShowRewardedAd(1);
+        public void ClickOnShowAdBtn()
+        {
+            try
+            {
+                Debug.Log(Word_AdmobController.instance);
+                Word_AdmobController.instance.ShowRewardedAd(1);
+
+            }
+            catch (System.Exception ex)
+            {
+                Debug.Log(ex.ToString());
+                throw;
+            }
+        }
 
         public void AdNotAvailableTost()
         {

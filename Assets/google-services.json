@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "963058576945",
+    "project_id": "world-connect-6ec6a",
+    "storage_bucket": "world-connect-6ec6a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963058576945:android:e519803d2c5a123804af10",
+        "android_client_info": {
+          "package_name": "com.chintugames.WordConnect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZxShTuLw9prSYbrG2htfuHJ4102kNcas"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

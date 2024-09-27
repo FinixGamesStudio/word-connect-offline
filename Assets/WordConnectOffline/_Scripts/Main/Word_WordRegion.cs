@@ -24,6 +24,7 @@ namespace WordConnectByFinix
         public int continueJoin;
         public RectTransform rt;
 
+        public Button hintButton;
 
         private void Awake()
         {
@@ -310,6 +311,8 @@ namespace WordConnectByFinix
             }
             else
             {
+                hintButton.interactable = false;
+                return;
                 if (!Word_InitializeIAP.instance.isInializeIAP)
                     CurrencyController.CreditBalance(100);
                 else

@@ -23,33 +23,33 @@ namespace WordConnectByFinix
 
         private void Start()
         {
-            Initialize();
+            //Initialize();
         }
 
         public void Initialize()
         {
-            if (!isInializeIAP)
-            {
-                var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
+            //if (!isInializeIAP)
+            //{
+            //    var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 
-                for (int i = 0; i < productId.Count; i++)
-                {
-                    builder.AddProduct(productId[i], ProductType.Consumable, new IDs
-                    {
-                      {productId[i], GooglePlay.Name},
-                    });
-                }
-                UnityPurchasing.Initialize(this, builder);
-            }
+            //    for (int i = 0; i < productId.Count; i++)
+            //    {
+            //        builder.AddProduct(productId[i], ProductType.Consumable, new IDs
+            //        {
+            //          {productId[i], GooglePlay.Name},
+            //        });
+            //    }
+            //    UnityPurchasing.Initialize(this, builder);
+            //}
         }
         public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
         {
-            storeController = controller;
-            extensionProvider = extensions;
-            isInializeIAP = true;
-            Debug.Log($"IAP Initialized Done With {storeController.products.all.Length} Products");
+            //storeController = controller;
+            //extensionProvider = extensions;
+            //isInializeIAP = true;
+            //Debug.Log($"IAP Initialized Done With {storeController.products.all.Length} Products");
 
-            ConfigController.instance.storeController.SetData(controller);
+            //ConfigController.instance.storeController.SetData(controller);
         }
 
         public void OnInitializeFailed(InitializationFailureReason error)
@@ -72,11 +72,11 @@ namespace WordConnectByFinix
         public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs purchaseEvent)
         {
             Debug.Log($"Purchase Done => {purchaseEvent.purchasedProduct.receipt}");
-            //UnifiedReceipt unifiedReceipt = JsonConvert.DeserializeObject<UnifiedReceipt>(purchaseEvent.purchasedProduct.receipt);
-            //InAppSucessPayload inAppSucessPayload = JsonConvert.DeserializeObject<InAppSucessPayload>(unifiedReceipt.Payload);
-            //string successPayloadString = inAppSucessPayload.json.Replace(@"\", string.Empty);
-            //PurchaseDetailPayload purchaseDetailPayload = JsonConvert.DeserializeObject<PurchaseDetailPayload>(successPayloadString);
-            ConfigController.instance.storeController.PurchaseSsuccess(5);
+            UnifiedReceipt unifiedReceipt = JsonConvert.DeserializeObject<UnifiedReceipt>(purchaseEvent.purchasedProduct.receipt);
+            InAppSucessPayload inAppSucessPayload = JsonConvert.DeserializeObject<InAppSucessPayload>(unifiedReceipt.Payload);
+            string successPayloadString = inAppSucessPayload.json.Replace(@"\", string.Empty);
+            PurchaseDetailPayload purchaseDetailPayload = JsonConvert.DeserializeObject<PurchaseDetailPayload>(successPayloadString);
+            ConfigController.instance.storeController.PurchaseSsuccess(purchaseDetailPayload.quantity);
             return PurchaseProcessingResult.Complete;
         }
         string ExtractFirstNumericValue(string input)

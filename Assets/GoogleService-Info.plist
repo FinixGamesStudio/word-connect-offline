@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBVrO4r3RmAuAJWFtAwYjgbe-Viij_OdMM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>963058576945</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.chintugames.WordConnect</string>
+	<key>PROJECT_ID</key>
+	<string>world-connect-6ec6a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>world-connect-6ec6a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:963058576945:ios:37d8e19a06c4e3bd04af10</string>
+</dict>
+</plist>

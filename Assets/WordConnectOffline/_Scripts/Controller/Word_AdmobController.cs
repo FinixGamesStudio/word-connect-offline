@@ -29,7 +29,15 @@ namespace WordConnectByFinix
 
         private void Awake()
         {
-            instance = this;
+            if (instance == null)
+            {
+                instance = this;
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
+
         }
         public void Start()
         {
@@ -187,43 +195,60 @@ namespace WordConnectByFinix
         int rewardStr;
         public void ShowRewardedAd(int t)
         {
-            rewardStr = t;
-            ConfigController.instance.OpenPreloadeObj();
-            Invoke(nameof(ShowReward), 1f);
+            try
+            {
+                rewardStr = t;
+                ConfigController.instance.OpenPreloadeObj();
+                Invoke(nameof(ShowReward), 1f);
+
+            }
+            catch (Exception ex)
+            {
+                Debug.Log(ex.ToString());
+                throw;
+            }
         }
 
         void ShowReward()
         {
-            ConfigController.instance.ClosePreloadeObj();
-            if (ConfigController.instance.IsInternetAwailable())
+            try
             {
-                if (rewardedAd != null && rewardedAd.CanShowAd())
+                ConfigController.instance.ClosePreloadeObj();
+                if (ConfigController.instance.IsInternetAwailable())
                 {
-                    rewardedAd.Show((Reward reward) =>
+                    if (rewardedAd != null && rewardedAd.CanShowAd())
                     {
-                        Debug.Log("Give reward to player !!");
-                        SetReWard();
-                    });
+                        rewardedAd.Show((Reward reward) =>
+                        {
+                            Debug.Log("Give reward to player !!");
+                            SetReWard();
+                        });
+                    }
+                    else
+                    {
+                        ConfigController.instance.ClosePreloadeObj();
+                        if (SceneManager.GetActiveScene().buildIndex == 1)
+                            Word_MainController.instance.AdNotAvailableTost();
+                        else
+                        {
+                            if (rewardStr == 2)
+                                Word_GameManager.instance.fortuneWheel.ShowMessage("Ad not Available !!");
+                            else
+                                ConfigController.instance.storeController.AdNotAvailableTost();
+                        }
+                        InitializeAdmob();
+                    }
                 }
                 else
                 {
                     ConfigController.instance.ClosePreloadeObj();
-                    if (SceneManager.GetActiveScene().buildIndex == 1)
-                        Word_MainController.instance.AdNotAvailableTost();
-                    else
-                    {
-                        if (rewardStr == 2)
-                            Word_GameManager.instance.fortuneWheel.ShowMessage("Ad not Available !!");
-                        else
-                            ConfigController.instance.storeController.AdNotAvailableTost();
-                    }
-                    InitializeAdmob();
+                    ConfigController.instance.noInternetController.OpenNoInternetPopUp();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                ConfigController.instance.ClosePreloadeObj();
-                ConfigController.instance.noInternetController.OpenNoInternetPopUp();
+                Debug.LogError(ex.ToString());
+                throw;
             }
         }
 
@@ -234,7 +259,7 @@ namespace WordConnectByFinix
             if (rewardStr == 1)
             {
                 isSpin = false;
-                coin = 12;
+                coin = 5;
             }
             else if (rewardStr == 2)
             {
