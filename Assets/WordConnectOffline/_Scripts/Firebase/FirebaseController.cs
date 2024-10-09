@@ -8,6 +8,7 @@ using System;
 using System.Collections;
 
 
+
 namespace WordConnectByFinix
 {
 
@@ -83,10 +84,36 @@ namespace WordConnectByFinix
                     //if (CallBreakUIManager.Instance.splashScreen.gameObject.activeSelf)
                     //    CallBreakUIManager.Instance.splashScreen.StartAnimation();
 
+                    Advertisements.Instance.GetUserConsent();
+
+                    //if (Advertisements.Instance.UserConsentWasSet() == false)
+                    //{
+                    //    //display your custom popup to notify the user about targeted 
+                    //    //advertisements with YES     and NO options
+                    //    if (YES)
+                    //    {
+                    //        //means that user agrees with data processing
+                    //        Advertisements.Instance.SetUserConsent(true);
+                    //    }
+                    //    else
+                    //    {
+                    //        //user doesn't want to share his data
+                    //        Advertisements.Instance.SetUserConsent(false);
+                    //    }
+                    //}
+                    Advertisements.Instance.Initialize();
+
                     Firebase.Messaging.FirebaseMessaging.TokenReceived += OnTokenReceived;
                     Firebase.Messaging.FirebaseMessaging.MessageReceived += OnMessageReceived;
                 });
         }
+
+        private void OnInitialized()
+        {
+            //Show ads only after this method is called
+            //This callback is not mandatory if you do not want to show banners as soon as your app starts.
+        }
+
 
         private IEnumerator Start()
         {

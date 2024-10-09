@@ -112,13 +112,30 @@ namespace WordConnectByFinix
             try
             {
                 Debug.Log(Word_AdmobController.instance);
-                Word_AdmobController.instance.ShowRewardedAd(1);
+
+
+                //  Word_AdmobController.instance.ShowRewardedAd(1);
+
+                Advertisements.Instance.ShowRewardedVideo(CompleteMethod);
 
             }
             catch (System.Exception ex)
             {
                 Debug.Log(ex.ToString());
                 throw;
+            }
+        }
+
+        private void CompleteMethod(bool completed, string advertiser)
+        {
+            Debug.Log("Closed rewarded from: " + advertiser + " -> Completed " + completed);
+            if (completed == true)
+            {
+                //give the reward
+            }
+            else
+            {
+                //no reward
             }
         }
 
